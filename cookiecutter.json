@@ -1,0 +1,5 @@
+{
+  "project_slug": "project",
+  "project_type": ["HTML", "Rest API"],
+  "is_local": true
+}
