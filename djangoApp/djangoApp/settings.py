@@ -58,11 +58,14 @@ WSGI_APPLICATION = 'djangoApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'NAME_OF_DB',
-        'USER': 'DB_USER_NAME',
-        'PASSWORD': 'DB_PASSWORD',
-        'HOST': 'localhost',
-        'PORT': 'PORT_NUMBER',
+        'NAME': 'db1',
+        'USER': 'user1',
+        'PASSWORD': '123456789',
+        'HOST': 'rc1a-0w15x1if99ekjybf.mdb.yandexcloud.net',
+        'PORT': '6432',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+        },
     }
 }
 
