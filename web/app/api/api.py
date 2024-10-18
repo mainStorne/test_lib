@@ -2,6 +2,8 @@ from fastapi import APIRouter
 
 from ..schemas.users import UserCreate, UserRead, UserUpdate
 from ..authentificate.users import auth_backend, fastapi_users
+from .endpoints.child import child_router
+
 
 api = APIRouter()
 
@@ -27,4 +29,9 @@ api.include_router(
     fastapi_users.get_users_router(UserRead, UserUpdate),
     prefix="/users",
     tags=["users"],
+)
+api.include_router(
+    child_router,
+    prefix='/child',
+    tags=['child']
 )

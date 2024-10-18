@@ -1,7 +1,7 @@
 from fastapi_sqlalchemy_toolkit import ModelManager
 from fastapi_users.authentication import Authenticator
 from pydantic import BaseModel
-from .router import get_crud_router
+from .crud import get_crud_router
 class FastAPICrudToolkit:
 
     def __init__(self, manager: ModelManager, get_session, read_scheme: type[BaseModel],

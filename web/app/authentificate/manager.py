@@ -8,7 +8,6 @@ from fastapi_users import exceptions
 from ..db.adapters.users import UserDatabase
 from ..schemas.users import UC
 from ..db.models.users import User
-from ..dependencies.auth import get_user_db
 from ..conf import SECRET
 
 
@@ -100,5 +99,3 @@ class BaseUserManager(IntegerIDMixin, UserManager[User, int]):
         print(f"User {user.id} has forgot their password. Reset token: {token}")
 
 
-async def get_user_manager(user_db: UserDatabase = Depends(get_user_db)):
-    yield BaseUserManager(user_db)

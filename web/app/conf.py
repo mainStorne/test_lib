@@ -1,4 +1,4 @@
-from project.web.settings import Settings
+from web.settings import Settings
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
 settings = Settings()
