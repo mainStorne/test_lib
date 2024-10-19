@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
+from base64 import b64encode
+from rest_framework.authtoken.models import Token
 
 class RegisterView(generics.CreateAPIView):
 	queryset = User.objects.all()
@@ -15,7 +17,15 @@ class LoginView(APIView):
 		password = request.data.get("password")
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
-			return Response({"message": "Login successful!"}, status=200)
+			token, created = Token.objects.get_or_create(user=user)
+
+			base_string = f'{username}:{token.key}'
+			encoded_token = b64encode(base_string.encode()).decode()
+
+			response = Response({"message": "Login successful!"}, status=200)
+			response['Authorization'] = f'Basic {encoded_token}'
+
+			return response
 		return Response({"error": "Invalid credentials"}, status=400)
 
 class LogoutView(APIView):
