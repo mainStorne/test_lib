@@ -4,7 +4,7 @@ from fastapi_sqlalchemy_toolkit import ModelManager
 from ...dependencies.session import get_async_session
 from ...db.models import Child
 from ...schemas.child import ChildCreate, ChildUpdate, ChildRead
-from ...authentificate.users import fastapi_users
+from ...authentication.users import fastapi_users
 
 manager = ModelManager(Child)
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from ..schemas.users import UserCreate, UserRead, UserUpdate
-from ..authentificate.users import auth_backend, fastapi_users
+from ..authentication.users import auth_backend, fastapi_users
 from .endpoints.child import child_router
 
 

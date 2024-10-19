@@ -1,8 +1,8 @@
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi.security import OAuth2PasswordRequestForm
-from fastapi_users import BaseUserManager as UserManager, IntegerIDMixin, models
+from fastapi.security import HTTPBasicCredentials
+from fastapi_users import BaseUserManager, IntegerIDMixin, models
 from fastapi_users import exceptions
 
 from ..db.adapters.users import UserDatabase
@@ -11,16 +11,15 @@ from ..db.models.users import User
 from ..conf import SECRET
 
 
-class BaseUserManager(IntegerIDMixin, UserManager[User, int]):
+class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     reset_password_token_secret = SECRET
     verification_token_secret = SECRET
 
     user_db: UserDatabase
 
     async def authenticate(
-            self, credentials: OAuth2PasswordRequestForm
+            self, credentials: HTTPBasicCredentials
     ) -> Optional[User]:
-
         try:
             user = await self.get_by_username(credentials.username)
         except exceptions.UserNotExists:

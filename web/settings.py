@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
     POSTGRES_DB: str
+    POSTGRES_SSLROTCERT: str
+    POSTGRES_SSLMODE: str
     SQLALCHEMY_DATABASE_URL: str | None = None
 
     @field_validator("SQLALCHEMY_DATABASE_URL", mode="before")
