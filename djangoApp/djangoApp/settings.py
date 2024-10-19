@@ -22,7 +22,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'accounts',
 ]
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': [
+		'rest_framework.authentication.BasicAuthentication',
+	],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,7 +68,7 @@ DATABASES = {
         'NAME': 'db1',
         'USER': 'user1',
         'PASSWORD': '123456789',
-        'HOST': 'rc1a-0w15x1if99ekjybf.mdb.yandexcloud.net',
+        'HOST': 'rc1b-1yd4xqqhrb6jhd1d.mdb.yandexcloud.net',
         'PORT': '6432',
         'OPTIONS': {
             'sslmode': 'verify-full',
