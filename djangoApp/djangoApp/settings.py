@@ -71,9 +71,6 @@ DATABASES = {
         'PASSWORD': '123456789',
         'HOST': 'rc1b-1yd4xqqhrb6jhd1d.mdb.yandexcloud.net',
         'PORT': '6432',
-        'OPTIONS': {
-            'sslmode': 'verify-full',
-        },
     }
 }
 
