@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web1_db:
+    image: postgres
+    env_file:
+      -  backend/web/.env
+    container_name: web1-postgres
+    expose:
+      - 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web1_app:
+    build:
+      context: ./backend/web
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./backend/web/src:/app/src
+    env_file:
+      - backend/web/.env
+    environment:
+      POSTGRES_HOST: "web1_db"
+      POSTGRES_PORT: 5432
+
+    depends_on:
+      - web1_db
+    container_name: web1-app
+    ports:
+      - "8000:80"
+volumes:
+  pgdata: {}
